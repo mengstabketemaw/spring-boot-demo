@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Feedback</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h2>Submit Feedback</h2>
+  <form id="feedbackForm">
+    <div class="mb-3">
+      <label for="feedback" class="form-label">Feedback</label>
+      <textarea id="feedback" name="feedback" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div id="confirmationMessage" class="alert alert-success mt-3" style="display:none;">Feedback submitted successfully!</div>
+  <div id="errorMessage" class="alert alert-danger mt-3" style="display:none;"></div>
+</div>
+<script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const feedback = document.getElementById('feedback').value;
+
+        fetch('/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': '{{_csrf.token}}' // CSRF token
+            },
+            body: JSON.stringify({ feedback })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('confirmationMessage').style.display = 'block';
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('feedback').value = ''; // Clear feedback field
+            } else {
+                throw new Error('Server error');
+            }
+        })
+        .catch(error => {
+            document.getElementById('errorMessage').innerText = 'Failed to submit feedback. Please try again later.';
+            document.getElementById('errorMessage').style.display = 'block';
+        });
+    });
+</script>
+</body>
+</html>
