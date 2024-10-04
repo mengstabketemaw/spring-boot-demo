@@ -20,7 +20,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable) // Enable this if needed later
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/feedback", "/login", "/forgot-password", "/css/**", "/h2-console/**").permitAll() // Permit public pages
+                        .requestMatchers("/feedback", "/login", "/signup", "/forgot-password", "/css/**", "/h2-console/**").permitAll() // Permit public pages
                         .anyRequest().authenticated() // All other pages need authentication
                 )
                 .formLogin(form -> form

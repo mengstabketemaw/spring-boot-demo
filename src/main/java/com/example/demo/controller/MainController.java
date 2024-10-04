@@ -12,14 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
-
-    @GetMapping("/welcome")
-    public String welcomePage(Model model, Authentication authentication) {
-        // Add authenticated user's name to the model
-        model.addAttribute("username", authentication.getName());
-        return "welcome";
-    }
-
     @GetMapping("/feedback")
     public String feedbackForm(Model model) {
         model.addAttribute("feedback", new Feedback());
