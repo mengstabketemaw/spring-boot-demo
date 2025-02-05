@@ -1,27 +1,53 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Feedback;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import com.example.demo.model.Employee;
+import com.example.demo.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
-    @GetMapping("/feedback")
-    public String feedbackForm(Model model) {
-        model.addAttribute("feedback", new Feedback());
-        return "feedback";
+
+    private final EmployeeService employeeService;
+
+    public MainController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    @PostMapping("/feedback")
-    @ResponseBody
-    public ResponseEntity<String> submitFeedback(@RequestBody Feedback feedbackForm) {
-        System.out.println("Feedback received: " + feedbackForm.getMessage());
-        return ResponseEntity.ok("Feedback submitted successfully!");
+    @GetMapping("/")
+    public String viewHomePage(Model model) {
+        model.addAttribute("allemplist", employeeService.getAllEmployee());
+        return "index";
+    }
+
+    @GetMapping("/addnew")
+    public String addNewEmployee(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "newemployee";
+    }
+
+    @PostMapping("/save")
+    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+        employeeService.save(employee);
+        return "redirect:/";
+    }
+
+    @GetMapping("/showFormForUpdate/{id}")
+    public String updateForm(@PathVariable(value = "id") int id, Model model) {
+        Employee employee = employeeService.getById(id);
+        model.addAttribute("employee", employee);
+        return "update";
+    }
+
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteThroughId(@PathVariable(value = "id") int id) {
+        employeeService.deleteViaId(id);
+        return "redirect:/";
+
     }
 }
