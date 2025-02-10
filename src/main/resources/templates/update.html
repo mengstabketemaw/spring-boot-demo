@@ -1096,8 +1096,9 @@
  <div class=form-group>
  <label class="control-label col-md-4" for=firstName> First Name<span class=required>*</span></label>
  <div class=col-md-8>
- <input id=firstName th:field="*{name}" class=form-control type=text value=sample1 tabindex=1>
- 
+ <input id=firstName th:field="*{name}" class=form-control type=text>
+ <input th:field="*{id}" class=form-control type="hidden">
+
  </div>
  </div>
  
@@ -1156,11 +1157,11 @@
  <div class=form-group>
  <label class="control-label col-md-4">Gender<span class=required>*</span></label>
  <div class=col-md-8>
- <select id=gender.id name=gender.id class=form-control tabindex=5>
-	                                          		<option value=-1></option>
-													<option value=2>Female<option value=1>Male</option>
+ <select id=gender.id name=gender.id class=form-control  th:field="*{gender}" tabindex=3>
+	                                          		<option value="-"></option>
+													<option value="Female">Female<option value="Male">Male</option>
 												</select>
- <span id=gender.id class=errorRed style=display:none></span>
+
  
  <div id=form_gender_error></div>
  </div>

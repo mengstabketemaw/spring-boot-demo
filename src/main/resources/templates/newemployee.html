@@ -1155,11 +1155,11 @@
  <div class=form-group>
  <label class="control-label col-md-4">Gender<span class=required>*</span></label>
  <div class=col-md-8>
- <select id=gender.id name=gender.id class=form-control tabindex=5>
-	                                          		<option value=-1></option>
-													<option value=2>Female<option value=1>Male</option>
-												</select>
- <span id=gender.id class=errorRed style=display:none></span>
+     <select class=form-control th:field="*{gender}">
+         <option value="-"></option>
+         <option value="Female">Female
+         <option value="Male">Male</option>
+     </select>
  
  <div id=form_gender_error></div>
  </div>

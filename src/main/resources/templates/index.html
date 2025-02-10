@@ -1163,12 +1163,13 @@
          <td><div class=checker><div class="ckEmpLst w-auto"><input type=checkbox path=checkBoxDep class="checkboxInput no-sort" value=false></div></div></td>
          <td th:text="${employee.name}"></td>
          <td th:text="${employee.email}"></td>
-         <td class="editVw du_hand">-</td>
+         <td th:text="${employee.gender}"></td>
          <td class="editVw du_hand">-</td>
          <td>
              <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="label label-lg label-inline my-1 btn-secondary">Update</a>
              <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="label label-lg label-inline my-1 btn-danger">Delete</a>
          </td>
+     </tr>
  </table>
      <div id=employeeList_tbl_processing class="dataTables_processing card" style=display:none>Processing...</div>
  </div>

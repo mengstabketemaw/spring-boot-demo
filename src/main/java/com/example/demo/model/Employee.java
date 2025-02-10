@@ -12,6 +12,7 @@ public class Employee {
     private Integer id;
     private String name;
     private String email;
+    private String gender;
 
     public Integer getId() {
         return id;
@@ -30,5 +31,13 @@ public class Employee {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
