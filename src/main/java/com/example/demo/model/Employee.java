@@ -13,6 +13,15 @@ public class Employee {
     private String name;
     private String email;
     private String gender;
+    private String placeOfBirth;
+
+    public String getPlaceOfBirth() {
+        return placeOfBirth;
+    }
+
+    public void setPlaceOfBirth(String placeOfBirth) {
+        this.placeOfBirth = placeOfBirth;
+    }
 
     public Integer getId() {
         return id;

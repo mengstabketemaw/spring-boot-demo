@@ -24,24 +24,24 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/addnew")
+    @GetMapping("/employee")
     public String addNewEmployee(Model model) {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
-        return "newemployee";
+        return "employeePage";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/employee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.save(employee);
         return "redirect:/";
     }
 
-    @GetMapping("/showFormForUpdate/{id}")
+    @GetMapping("/employee/{id}")
     public String updateForm(@PathVariable(value = "id") int id, Model model) {
         Employee employee = employeeService.getById(id);
         model.addAttribute("employee", employee);
-        return "update";
+        return "employeePage";
     }
 
     @GetMapping("/deleteEmployee/{id}")
