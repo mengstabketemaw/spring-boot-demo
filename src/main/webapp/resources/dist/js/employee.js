@@ -14,10 +14,10 @@ var EmployeeWizard = function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: '/employee',
+                    url: '/demo/employee',
                     data: formData,
                     success: function(response) {
-                        location.href = '/';
+                        location.href = '/demo';
                     },
                     error: function(xhr, status, error) {
                         console.log('An error occurred: ' + error);

@@ -1115,5 +1115,5 @@
  </div>
  
 </div>
-    <script src="<c:url value='../../resources/dist/assets/js/jquery-3.6.0.min.js' />"></script>
-    <script src="<c:url value='../../resources/dist/js/employee.js' />"></script>
+    <script src="<c:url value='/resources/dist/assets/js/jquery-3.6.0.min.js' />"></script>
+    <script src="<c:url value='/resources/dist/js/employee.js' />"></script>
